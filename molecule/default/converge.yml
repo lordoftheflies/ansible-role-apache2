@@ -2,16 +2,9 @@
 - name: "Converge"
   hosts: all
   become: true
-  vars:
-    - apache2_deployment_users_home: /root
-    - apache2_testing_provider: lxd
 
   roles:
     - lordoftheflies.ansible_role_apache2
-
-
-  vars:
-    gitlab_restart_handler_failed_when: false
 
   pre_tasks:
     - name: Update apt cache.
