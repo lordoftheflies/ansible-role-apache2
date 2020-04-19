@@ -4,7 +4,7 @@
   become: true
 
   roles:
-    - lordoftheflies.ansible_role_apache2
+    - ansible-role-apache2
 
   pre_tasks:
     - name: Update apt cache.
