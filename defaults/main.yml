@@ -1,0 +1,237 @@
+---
+# roles/apache2/defaults/main.yml
+
+apache2_debug: false
+
+apache2_controller_user: '{{ project_controller_user }}'
+apache2_controller_home: '{{ project_controller_home }}'
+apache2_controller_resources_root: '{{ project_controller_resources_home }}'
+
+apache2_deployment_user: '{{ project_deployment_user }}'
+apache2_deployment_home: '{{ project_deployment_home }}'
+apache2_deployment_resources_root: '{{ project_deployment_resources_home }}'
+
+## atomic versioning example
+#
+# apache2_major: '0'
+# apache2_moderate_revision: '0'
+# apache2_minor_revision: '1'
+# apache2_build: ''
+
+## Package #
+
+apache2_package_state: 'present'
+apache2_package_version: '2.0.1'
+apache2_package_filename: "vagrant_{{ apache2_package_version }}_i686.deb"
+
+apache2_controller_resources_dir: '{{ apache2_controller_resources_root }}/sw/vagrant/debs'
+apache2_deployment_resources_dir: '{{ apache2_deployment_resources_root }}/vagrant/debs'
+
+# /tests/sw/{{ ansible_distribution| lower }}/{{ ansible_distribution_version }}/miniconda'
+
+# Help file
+
+apache2_acemenu_help_file_template_path: '{{ fact_role_path }}/templates/bin/acemenu/help/example_aceadmin_helpfile.md.j2'
+
+# Resources
+
+apache2_package_url: "https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_i686.deb"
+# apache2_checksum_url: "https://releases.hashicorp.com/vagrant/2.0.1/ vagrant_2.0.1_SHA256SUMS"
+# apache2_checksum_sig_url: "https://releases.hashicorp.com/vagrant/2.0.1/ vagrant_2.0.1_SHA256SUMS.sig"
+
+## links
+
+apache2_default_link_force: true
+
+########################################
+
+# Resources
+
+apache2_resources_on_local:
+
+  apache2_local_directories:
+
+    state: 'directory'
+    path: '{{ apache2_controller_resources_dir }}'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0755'
+
+  apache2_local_clones:
+
+    become: ''
+    repo: 'https://github.com/cjsteel/script-bash-acemenu.git'
+    dest: '{{ apache2_controller_resources_dir }}/acemenu'
+    mode: '0700'
+    clone: true
+
+  apache2_local_downloads:
+
+    url: 'https://repo.continuum.io/miniconda/Miniconda2-4.3.30-Linux-x86_64.sh'
+    dest: '{{ apache2_controller_resources_dir }}/Miniconda2-latest-Linux-x86_64.sh'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0700'
+    checksum: 'md5:bd1655b4b313f7b2a1f2e15b7b925d03'
+    resource_type: 'url'
+
+  apache2_local_file_copies:
+
+    state: "copy"
+    src: './files/example_playbook.yml'
+    dest: '{{ apache2_controller_resources_dir }}/copy_test.yml'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0700'
+
+  apache2_local_file_touches:
+
+    state: 'touch'
+    path: '{{ apache2_controller_resources_dir }}/copy_test.yml'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0770'
+
+  apache2_local_templated_files:
+
+
+    state: 'template'
+    src: './templates/template_test.md.j2'
+    dest: '{{ apache2_controller_resources_dir }}/test.md'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0700'
+
+  apache2_local_blocksinfile:
+
+    type: 'blockinfile'
+    path: '{{ apache2_controller_resources_dir }}/test.md'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0700'
+    insertafter: "EOF"
+    block: |
+      # if running bash
+      if [ -n "$BASH_VERSION" ]; then
+          # include /opt/display/bin/display if it exists
+          if [ -f "/opt/display/bin/display" ]; then
+              PATH="/opt/display/bin:$PATH"
+
+       	. "/opt/display/bin/"
+          fi
+      fi
+    state: "present"
+
+  apache2_local_standard_sym_links:
+
+    state: "link"
+    src: '{{ apache2_controller_resources_dir }}/test.md'
+    dest: '{{ apache2_controller_resources_dir }}/my_local_link'
+    owner: '{{ apache2_controller_user }}'
+    group: '{{ apache2_controller_user }}'
+    mode: '0700'
+    force: '{{ apache2_default_link_force }}'
+
+  apache2_local_relative_sym_links:
+
+    link_name: 'relative_link'
+    link_target: 'test.md'
+    link_dir: '{{ apache2_controller_resources_dir }}'
+    state: 'relative_link'
+#    owner: '{{ apache2_controller_user }}'
+#    group: '{{ apache2_controller_user }}'
+#    mode: '0700'
+
+apache2_resources_on_remote:
+
+  apache2_remote_directories:
+
+    state: 'directory'
+    path: '{{ apache2_deployment_resources_dir }}'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0755'
+
+  apache2_remote_clones:
+
+    become: true
+    repo: 'https://github.com/cjsteel/script-bash-acemenu.git'
+    dest: '{{ apache2_deployment_resources_dir }}/acemenu'
+    mode: '0700'
+    clone: true
+
+  apache2_remote_downloads:
+
+    url: 'https://repo.continuum.io/miniconda/Miniconda2-4.3.30-Linux-x86_64.sh'
+    dest: '{{ apache2_deployment_resources_dir }}/Miniconda2-latest-Linux-x86_64.sh'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'
+    checksum: 'md5:bd1655b4b313f7b2a1f2e15b7b925d03'
+    resource_type: 'url'
+
+  apache2_remote_file_copies:
+
+    state: "copy"
+    src: './files/example_playbook.yml'
+    dest: '{{ apache2_deployment_resources_dir }}/copy_test.yml'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'
+
+  apache2_remote_file_touches:
+
+    state: 'touch'
+    path: '{{ apache2_deployment_resources_dir }}/copy_test.yml'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0770'
+
+  apache2_remote_templates_files:
+
+    state: 'template'
+    src: './templates/template_test.md.j2'
+    dest: '{{ apache2_deployment_resources_dir }}/test.md'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'
+
+  apache2_remote_blocksinfile:
+
+    type: 'blockinfile'
+    path: '{{ apache2_deployment_resources_dir }}/test.md'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'
+    insertafter: "EOF"
+    block: |
+      # if running bash
+      if [ -n "$BASH_VERSION" ]; then
+          # include /opt/display/bin/display if it exists
+          if [ -f "/opt/display/bin/display" ]; then
+              PATH="/opt/display/bin:$PATH"
+
+       	. "/opt/display/bin/"
+          fi
+      fi
+    state: "present"
+
+  apache2_remote_standard_sym_links:
+
+    state: 'link'
+    src: '{{ apache2_deployment_resources_dir }}/test.md'
+    dest: '{{ apache2_deployment_resources_dir }}/my_remote_link'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'
+    force: '{{ apache2_default_link_force }}'
+
+  apache2_remote_relative_sym_links:
+
+    state: 'relative_link'
+    link_dir: '{{ apache2_deployment_resources_dir }}'
+    link_name: 'my_relative_link'
+    link_target: 'test.md'
+    owner: '{{ apache2_deployment_user }}'
+    group: '{{ apache2_deployment_user }}'
+    mode: '0700'

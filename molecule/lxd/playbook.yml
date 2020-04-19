@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    - apache2_deployment_users_home: /root
+    - apache2_testing_provider: lxd
+
+  roles:
+    - apache2

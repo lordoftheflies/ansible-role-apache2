@@ -1,0 +1,5 @@
+---
+# roles/apache2/vars/debian.yml
+
+# Debian specific vars
+apache2_package_extension: 'deb'

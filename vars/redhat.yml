@@ -1,0 +1,4 @@
+---
+# roles/apache2/vars/debian.yml
+
+apache2_package_extension: 'rpm'
