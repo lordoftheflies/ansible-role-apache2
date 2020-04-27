@@ -1,8 +1,5 @@
 ---
-# roles/apache2/tasks/main.yml
-
 # Boilerplate tasks
-
 
 - name: "Include version-specific variables for OS."
   include_vars: "{{ specific_variables }}"
@@ -28,6 +25,39 @@
   loop_control:
     loop_var: specific_tasks
 
+- name: "Create available sites directory if it does not exist"
+  tags: ["apache2"]
+  file:
+    path: /etc/apache2/sites-available
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: "Create enabled sites directory if it does not exist"
+  file:
+    path: /etc/apache2/sites-enabled
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: "Install dependencies"
+  package:
+    name:
+      - "{{ package }}"
+    state: present
+  with_items: "{{ ansible_role_apache2_packages }}"
+  loop_control:
+    loop_var: package
+
+- name: "Install Apache2 module 'wsgi'"
+  tags: [ "apache2", "mod" ]
+  package:
+    state: present
+    name: libapache2-mod-wsgi-py3
+
+- name: "Enable/disable Apache2 module 'wsgi'"
+  tags: [ "apache2", "mod" ]
+  apache2_module:
+    state: present
+    name: wsgi
 
 
 # Role tasks
