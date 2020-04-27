@@ -32,6 +32,11 @@ Apache2 is an Ansible Role used to setup and maintain production grade services.
 
 * Ansible
 
+
+## Variables
+
+## Testing
+
 ### For Local Testing
 
 * [Vagrant](https://www.vagrantup.com/) - (Tested using version 2.1.1)
@@ -42,18 +47,6 @@ Apache2 is an Ansible Role used to setup and maintain production grade services.
   * [vagrant-vbguest (0.15.2) - Recommended vagrant-vbguest](https://github.com/<class 'jinja2.utils.Namespace'>/vagrant-vbguest)
 * [Virtual Box](https://www.virtualbox.org/)
   * Tested using Version 5.2.14 r123301 (Qt5.6.1)
-
-## Variables
-
-### defaults/main.yml
-
-* [defaults/main.yml](defaults/main.yml) contains all of the required variables.
-
-### project_name/site.yml example
-
-* [example_apache2.yml](files/example_site.yml) may contain an example entry.
-
-## Testing
 
 ### Testing with Molecule
 
@@ -75,19 +68,13 @@ To run on a specific VM's
 vagrant up xenial
 ```
 
-### VM's tested with Vagrant and Virtualbox
-
-pass, fail, untested, unsupported
-
-
-| OS | Version | Distribution | Supported [^1](#) | Results  |
-| :--- | :---: | :---: | :---: | :---: |
-
-
 ## Authors
 
-- [<class 'jinja2.utils.Namespace'>](mailto:<class 'jinja2.utils.Namespace'>)
+* This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+* Role upgraded in 2019 by [László Hegedűs](mailto:laszlo.hegedus@cherubits.hu), founder of [Cherubits LLC](https://portal.cherubits.hu)
 
-## License: [MIT](https://tldrlegal.com/license/mit-license)
+## License
 
-* apache2 generated using [ansible_collection_skeleton](https://github.com/<class 'jinja2.utils.Namespace'>/ansible_collection_skeleton)
+[Apache 2.0](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0))
+
+* apache2 generated using [ansible_collection_skeleton](https://github.com/lordoftheflies/ansible-role-skeleton)
