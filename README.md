@@ -7,7 +7,11 @@ description: 'Quickstart and examples for demonstrating the role capabilities.'
 
 ## Status
 
-[![Build Status](https://travis-ci.org/lordoftheflies/apache2.svg?branch=master)](https://travis-ci.org/lordoftheflies/ansible-role-apache2)
+[![Build Status](https://travis-ci.org/lordoftheflies/ansible-role-apache2.svg?branch=master)](https://travis-ci.org/lordoftheflies/ansible-role-apache2)
+
+[![Version](https://img.shields.io/github/v/tag/lordoftheflies/ansible-role-apache2?sort=semver)](https://github.com/lordoftheflies/ansible-role-apache2/releases)
+
+![GitHub Release Date](https://img.shields.io/github/release-date/lordoftheflies/ansible-role-apache2)
 
 ## Description
 
@@ -86,9 +90,4 @@ pass, fail, untested, unsupported
 
 ## License: [MIT](https://tldrlegal.com/license/mit-license)
 
-* apache2 generated using [ansible_collection_skeleton](https://github.com/<class 'jinja2.utils.Namespace'>/ansible_collection_skeleton)[![Ansible Role](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
-[![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
-[![Ansible Role](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
-[![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
-[![Ansible Role](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
-[![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
+* apache2 generated using [ansible_collection_skeleton](https://github.com/<class 'jinja2.utils.Namespace'>/ansible_collection_skeleton)
