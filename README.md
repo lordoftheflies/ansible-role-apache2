@@ -41,10 +41,10 @@ Apache2 is an Ansible Role used to setup and maintain production grade services.
 
 * [Vagrant](https://www.vagrantup.com/) - (Tested using version 2.1.1)
 * Vagrant plugins:
-  * [vagrant-disksize (0.1.2)](https://github.com/<class 'jinja2.utils.Namespace'>/vagrant-disksize)
-  * [vagrant-libvirt](https://github.com/<class 'jinja2.utils.Namespace'>/vagrant-libvirt)
-  * vai (0.9.3) - For testing with multiple vms [vagrant-plugin-vai](https://github.com/<class 'jinja2.utils.Namespace'>/vagrant-plugin-vai)
-  * [vagrant-vbguest (0.15.2) - Recommended vagrant-vbguest](https://github.com/<class 'jinja2.utils.Namespace'>/vagrant-vbguest)
+  * [vagrant-disksize (0.1.2)](https://github.com/lordoftheflies/vagrant-disksize)
+  * [vagrant-libvirt](https://github.com/lordoftheflies/vagrant-libvirt)
+  * vai (0.9.3) - For testing with multiple vms [vagrant-plugin-vai](https://github.com/lordoftheflies/vagrant-plugin-vai)
+  * [vagrant-vbguest (0.15.2) - Recommended vagrant-vbguest](https://github.com/lordoftheflies/vagrant-vbguest)
 * [Virtual Box](https://www.virtualbox.org/)
   * Tested using Version 5.2.14 r123301 (Qt5.6.1)
 
@@ -77,4 +77,4 @@ vagrant up xenial
 
 [Apache 2.0](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0))
 
-* apache2 generated using [ansible_collection_skeleton](https://github.com/lordoftheflies/ansible-role-skeleton)
+**NOTE**: Role generated using [ansible-collection-skeleton](https://github.com/lordoftheflies/ansible-role-skeleton)
