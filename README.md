@@ -90,3 +90,5 @@ pass, fail, untested, unsupported
 [![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
 [![Ansible Role](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
 [![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
+[![Ansible Role](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
+[![Ansible Role](https://img.shields.io/ansible/role/)](https://galaxy.ansible.com/lordoftheflies/ansible_role_apache2)
