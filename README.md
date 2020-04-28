@@ -13,6 +13,8 @@ description: 'Quickstart and examples for demonstrating the role capabilities.'
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/lordoftheflies/ansible-role-apache2)
 
+[![time tracker](https://wakatime.com/badge/github/lordoftheflies/ansible-role-apache2.svg)](https://wakatime.com/badge/github/lordoftheflies/ansible-role-apache2)
+
 ## Description
 
 Apache2 is an Ansible Role used to setup and maintain production grade services.
